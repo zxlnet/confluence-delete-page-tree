@@ -1,0 +1,29 @@
+{namespace com.zxlnet.plugins.confluence.templates.DeletePageHierarchy}
+
+/**
+ * Copy page dialog template
+ */
+{template .deletePageDialog}
+<section role="dialog" id="delete-page-tree-dialog" class="aui-layer aui-dialog2 aui-dialog2-small" aria-hidden="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">Delete Page Hierarchy</h2>
+    </header>
+    <div class="aui-dialog2-content">
+        <form action="#">
+            <fieldset class="group">
+                <div class="radio">
+                    <label for="copy-current-page">Will delete the page and all it's children if confirmed.</label>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+        <div class="button-spinner"></div>
+            <button id="delete-page-tree-dialog-confirm" class="aui-button aui-button-primary">Confirm</button>
+            <button id="delete-page-tree-close" class="aui-button aui-button-link">Cancel</button>
+        </div>
+    </footer>
+</section>
+{/template}
+

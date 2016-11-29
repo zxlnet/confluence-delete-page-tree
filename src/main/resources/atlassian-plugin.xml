@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="delete-page-tree"/>
+  <!-- add our web resources -->
+  <web-resource key="delete-page-tree-resources" name="Delete-Page-Tree Web Resources">
+    <!-- transform calls to AJS.getText() inside JS files -->
+    <transformation extension="js">
+        <transformer key="jsI18n"/>
+    </transformation>
+
+    <!-- transform Soy templates into JS -->
+    <transformation extension="soy">
+        <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+        </transformer>
+    </transformation>
+
+    <resource type="download" name="delete-page-tree.css" location="/css/delete-page-tree.css" />
+    <resource type="download" name="delete-page-tree.js" location="/js/delete-page-tree.js" />
+    <resource type="download" name="images/" location="/images" />
+    <resource type="download" name="delete-page-tree-soy.js" location="/soy/delete-page-tree.soy" />
+    <context>page</context>
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:dialog2</dependency>
+    <dependency>com.atlassian.confluence.plugins.confluence-space-ia:soy-resources</dependency>
+
+  </web-resource>
+
+  <web-item name="delete-page-tree" i18n-name-key="delete.page.tree.name" key="delete-page-tree" section="system.content.action/secondary" weight="100">
+    <description key="delete.page.tree.description">Delete-Page-Tree</description>
+    <resource name="icon" type="download" location="/images/pluginIcon.png"/>
+    <label key="delete.page.tree.label"/>
+    <link linkId="delete-page-tree-link">javascript:void(0)</link>
+  </web-item>
+</atlassian-plugin>
